@@ -6,6 +6,7 @@ use App\Models\Cursos;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Config;
 
 class Categorias extends Model
 {
@@ -22,7 +23,7 @@ class Categorias extends Model
                     "id" => $r->id,
                     "titulo" => $r->titulo,
                     "url" => $r->url,
-                    "imagem" => $r->imagem,
+                    "imagem" => Config::get('constants.diretorio.arquivo') . "/online_categorias/" . $r->imagem,
                     "data_criacao" => (object)[
                         "valor" => $r->data_criacao,
                         "br" => Carbon::parse($r->data_criacao)->format('d/m/Y')

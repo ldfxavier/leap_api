@@ -60,7 +60,7 @@ class Cursos extends Model
                     $categorias[] = (object)[
                         "id" => $r_categoria->id,
                         "titulo" => $r_categoria->titulo,
-                        "imagem" => $r_categoria->imagem
+                        "imagem" => Config::get('constants.diretorio.arquivo') . "/online_categorias/" . $r_categoria->imagem
                     ];
                 endforeach;
 
