@@ -1,6 +1,6 @@
 <?php
 return [
     'diretorio' => [
-        'arquivo' => 'http://localhost/leap_painel/painel/arquivos'
+        'arquivo' => 'https://painel.leap.art.br/arquivos'
     ]
 ];
