@@ -5,7 +5,7 @@
  * @see https://github.com/hhxsv5/laravel-s/blob/master/Settings.md  English
  */
 return [
-    'listen_ip'                => env('LARAVELS_LISTEN_IP', '127.0.0.1'),
+    'listen_ip'                => env('LARAVELS_LISTEN_IP', 'api.leap.art.br'),
     'listen_port'              => env('LARAVELS_LISTEN_PORT', 8000),
     'socket_type'              => defined('SWOOLE_SOCK_TCP') ? SWOOLE_SOCK_TCP : 1,
     'enable_coroutine_runtime' => false,
