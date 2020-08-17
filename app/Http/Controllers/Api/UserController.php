@@ -68,4 +68,17 @@ class UserController extends Controller
         $User = new User;
         return $User->updateUser($request);
     }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function avatar(Request $request)
+    {
+        $User = new User;
+        return $User->avatar($request);
+    }
 }

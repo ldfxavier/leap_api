@@ -23,6 +23,7 @@ function sqlError(array $error)
         $return = "O valor informado não é um valor válido. ({$return[4]})";
     endif;
     return [
+        'error' => true,
         'message' => $return,
     ];
 }

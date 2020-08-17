@@ -31,6 +31,7 @@ Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
 
         Route::get('/usuario/{id}', 'UserController@show')->name('user.user');
         Route::put('/usuario', 'UserController@update')->name('user.update');
+        Route::post('/usuario/avatar', 'UserController@avatar')->name('user.avatar');
         Route::put('/usuario/senha', 'UserController@password')->name('user.password');
 
         Route::get('/cursos', 'CursosController@index')->name('cursos.index');

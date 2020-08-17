@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -60,7 +61,8 @@ class AuthController extends Controller
      */
     public function me()
     {
-        return auth('api')->user();
+        $User = new User();
+        return $User->me();
     }
 
     /**

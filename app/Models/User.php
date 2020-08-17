@@ -80,8 +80,13 @@ class User extends Authenticatable implements JWTSubject
             $this->status = 1;
             $this->timestamps = false;
 
+            if (null !== $data->file('avatar')) :
+                $this->avatar = $data->file('avatar')->store('avatars');
+            endif;
+
             if (empty($data->password)) :
                 return response([
+                    'error' => true,
                     'message' => 'O campo "password" não pode ser vazio!',
                 ], 400);
             endif;
@@ -93,17 +98,21 @@ class User extends Authenticatable implements JWTSubject
                 if (!$token = auth('api')->attempt($credentials)) {
                     return response(
                         [
+                            'error' => true,
                             'message' => 'Login ou senha incorreto!',
                         ],
                         401
                     );
                 }
 
+                $user = auth('api')->user();
+                $user->avatar = asset('storage/' . $user->avatar);
+
                 return response([
                     'access_token' => $token,
                     'token_type' => 'bearer',
                     'expires_in' => auth('api')->factory()->getTTL() * 60,
-                    'dados' => auth('api')->user(),
+                    'dados' => $user,
                     'message' => 'Usuário criado com sucesso!'
                 ]);
             endif;
@@ -133,9 +142,41 @@ class User extends Authenticatable implements JWTSubject
             ];
 
             $id = auth('api')->user()->id;
+
             if ($this->where('id', $id)->update($update)) :
                 return response([
+                    'error' => false,
                     'message' => 'Dados atualizados com sucesso!',
+                ]);
+            else :
+                return response([
+                    'error' => false,
+                    'message' => 'Nenhum dado atualizado!',
+                ]);
+
+            endif;
+        } catch (Exception $e) {
+            return response(sqlError($e->errorInfo), 400);
+        }
+    }
+
+    /**
+     * Update user avatar.
+     *
+     * @return array
+     */
+    public function avatar($data)
+    {
+        try {
+            $this->timestamps = false;
+            $update['avatar'] = $data->file('avatar')->store('avatars');
+
+            $id = auth('api')->user()->id;
+
+            if ($this->where('id', $id)->update($update)) :
+                return response([
+                    'error' => false,
+                    'message' => 'Avatar atualizado com sucesso!',
                 ]);
             endif;
         } catch (Exception $e) {
@@ -154,13 +195,36 @@ class User extends Authenticatable implements JWTSubject
             $user = $this->find($id);
 
             if ($user) :
-                $user->image = asset('storage/' . $user->image);
-                $user->address;
-                $user->jobs;
+                $user->avatar = asset('storage/' . $user->avatar);
                 return response($user);
             endif;
         } catch (Exception $e) {
-            return response(['message' => 'Você não tem permissão para acessar esse usuário!'], 401);
+            return response([
+                'error' => true,
+                'message' => 'Você não tem permissão para acessar esse usuário!'
+            ], 401);
+        }
+    }
+
+    /**
+     * Show user.
+     *
+     * @return array
+     */
+    public function me()
+    {
+        try {
+            $user = auth('api')->user();
+
+            if ($user) :
+                $user->avatar = asset('storage/' . $user->avatar);
+                return response($user);
+            endif;
+        } catch (Exception $e) {
+            return response([
+                'error' => true,
+                'message' => 'Você não tem permissão para acessar esse usuário!'
+            ], 401);
         }
     }
 
