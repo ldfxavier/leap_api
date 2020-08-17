@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b14e843dc2793940e08e52b3b0f85b97",
+    "content-hash": "06c51a9bf434ef5a9b14a7a097af2f06",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -103,6 +103,50 @@
                 "math"
             ],
             "time": "2020-04-15T15:59:35+00:00"
+        },
+        {
+            "name": "cweagans/composer-patches",
+            "version": "1.6.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cweagans/composer-patches.git",
+                "reference": "2e6f72a2ad8d59cd7e2b729f218bf42adb14f590"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cweagans/composer-patches/zipball/2e6f72a2ad8d59cd7e2b729f218bf42adb14f590",
+                "reference": "2e6f72a2ad8d59cd7e2b729f218bf42adb14f590",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "composer/composer": "~1.0",
+                "phpunit/phpunit": "~4.6"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "cweagans\\Composer\\Patches"
+            },
+            "autoload": {
+                "psr-4": {
+                    "cweagans\\Composer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Cameron Eagans",
+                    "email": "me@cweagans.net"
+                }
+            ],
+            "description": "Provides a way to patch Composer packages.",
+            "time": "2019-08-29T20:11:49+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -698,6 +742,98 @@
                 "url"
             ],
             "time": "2019-07-01T23:21:34+00:00"
+        },
+        {
+            "name": "hhxsv5/laravel-s",
+            "version": "v3.7.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hhxsv5/laravel-s.git",
+                "reference": "ef36d20035bb90ab21da83e8894e71b4e6c73ba6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hhxsv5/laravel-s/zipball/ef36d20035bb90ab21da83e8894e71b4e6c73ba6",
+                "reference": "ef36d20035bb90ab21da83e8894e71b4e6c73ba6",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-pcntl": "*",
+                "php": ">=5.5.9",
+                "swoole/ide-helper": "@dev",
+                "symfony/console": ">=2.7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=4.8.36"
+            },
+            "suggest": {
+                "ext-inotify": "Inotify, used to real-time reload.",
+                "ext-swoole": "Coroutine based Async PHP programming framework, require >= 1.7.19."
+            },
+            "bin": [
+                "bin/fswatch"
+            ],
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Hhxsv5\\LaravelS\\Illuminate\\LaravelSServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Hhxsv5\\LaravelS\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Xie Biao",
+                    "email": "hhxsv5@sina.com"
+                }
+            ],
+            "description": "🚀 LaravelS is an out-of-the-box adapter between Swoole and Laravel/Lumen.",
+            "homepage": "https://github.com/hhxsv5/laravel-s",
+            "keywords": [
+                "LaravelS",
+                "async",
+                "coroutine",
+                "http",
+                "inotify",
+                "laravel",
+                "laravel-s",
+                "lumen",
+                "performance",
+                "process",
+                "server",
+                "swoole",
+                "task",
+                "tcp",
+                "timer",
+                "udp",
+                "websocket"
+            ],
+            "funding": [
+                {
+                    "url": "https://gitee.com/hhxsv5/laravel-s?donate=true",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.blockchain.com/btc/address/33owCwMDZBikNe3SY1nnyJ64cEyP7i3mcU",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.paypal.me/hhxsv5",
+                    "type": "custom"
+                }
+            ],
+            "time": "2020-08-12T04:00:13+00:00"
         },
         {
             "name": "laravel/framework",
@@ -1663,6 +1799,79 @@
             "time": "2020-07-20T17:29:33+00:00"
         },
         {
+            "name": "predis/predis",
+            "version": "v1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/predis/predis.git",
+                "reference": "82eb18c6c3860849cb6e2ff34b0c4b39d5daee46"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/predis/predis/zipball/82eb18c6c3860849cb6e2ff34b0c4b39d5daee46",
+                "reference": "82eb18c6c3860849cb6e2ff34b0c4b39d5daee46",
+                "shasum": ""
+            },
+            "require": {
+                "cweagans/composer-patches": "^1.6",
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8"
+            },
+            "suggest": {
+                "ext-curl": "Allows access to Webdis when paired with phpiredis",
+                "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol"
+            },
+            "type": "library",
+            "extra": {
+                "composer-exit-on-patch-failure": true,
+                "patches": {
+                    "phpunit/phpunit-mock-objects": {
+                        "Fix PHP 7 and 8 compatibility": "./tests/phpunit_mock_objects.patch"
+                    },
+                    "phpunit/phpunit": {
+                        "Fix PHP 7 compatibility": "./tests/phpunit_php7.patch",
+                        "Fix PHP 8 compatibility": "./tests/phpunit_php8.patch"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Predis\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniele Alessandri",
+                    "email": "suppakilla@gmail.com",
+                    "homepage": "http://clorophilla.net"
+                }
+            ],
+            "description": "Flexible and feature-complete Redis client for PHP and HHVM",
+            "homepage": "http://github.com/nrk/predis",
+            "keywords": [
+                "nosql",
+                "predis",
+                "redis"
+            ],
+            "funding": [
+                {
+                    "url": "https://www.paypal.me/tillkruss",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/tillkruss",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-08-11T17:28:15+00:00"
+        },
+        {
             "name": "psr/container",
             "version": "1.0.0",
             "source": {
@@ -2231,6 +2440,119 @@
                 "mailer"
             ],
             "time": "2019-11-12T09:31:26+00:00"
+        },
+        {
+            "name": "swoole/ide-helper",
+            "version": "4.5.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/swoole/ide-helper.git",
+                "reference": "e45892fb913204fc776bdec019ca8b723e7249b1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/swoole/ide-helper/zipball/e45892fb913204fc776bdec019ca8b723e7249b1",
+                "reference": "e45892fb913204fc776bdec019ca8b723e7249b1",
+                "shasum": ""
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "~6.5.0",
+                "laminas/laminas-code": "~3.4.0",
+                "squizlabs/php_codesniffer": "~3.5.0",
+                "symfony/filesystem": "~4.0"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Team Swoole",
+                    "email": "team@swoole.com"
+                }
+            ],
+            "description": "IDE help files for Swoole.",
+            "time": "2020-05-28T19:17:49+00:00"
+        },
+        {
+            "name": "swooletw/laravel-swoole",
+            "version": "v2.6.67",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/swooletw/laravel-swoole.git",
+                "reference": "2271aa7fbd881d932ecca46749a609c36e15cf93"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/swooletw/laravel-swoole/zipball/2271aa7fbd881d932ecca46749a609c36e15cf93",
+                "reference": "2271aa7fbd881d932ecca46749a609c36e15cf93",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "~5.4|~6.0|~7.0",
+                "illuminate/contracts": "~5.4|~6.0|~7.0",
+                "illuminate/http": "~5.4|~6.0|~7.0",
+                "illuminate/support": "~5.4|~6.0|~7.0",
+                "php": "^7.2",
+                "predis/predis": "^1.1"
+            },
+            "require-dev": {
+                "codedungeon/phpunit-result-printer": "^0.14.0",
+                "laravel/lumen-framework": "~5.4|~6.0|~7.0",
+                "mockery/mockery": "~1.0",
+                "php-coveralls/php-coveralls": "^2.1",
+                "php-mock/php-mock": "^2.0",
+                "phpunit/php-code-coverage": "^6.1",
+                "phpunit/phpunit": "^7.5",
+                "swoole/ide-helper": "@dev"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "SwooleTW\\Http\\LaravelServiceProvider"
+                    ],
+                    "aliases": {
+                        "Server": "SwooleTW\\Http\\Server\\Facades\\Server",
+                        "Table": "SwooleTW\\Http\\Server\\Facades\\Table",
+                        "Room": "SwooleTW\\Http\\Websocket\\Facades\\Room",
+                        "Websocket": "SwooleTW\\Http\\Websocket\\Facades\\Websocket"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/Server/helpers.php"
+                ],
+                "psr-4": {
+                    "SwooleTW\\Http\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Albert Chen",
+                    "email": "albert@unisharp.com"
+                },
+                {
+                    "name": "Huang Yi",
+                    "email": "coodeer@163.com"
+                }
+            ],
+            "description": "High performance HTTP server based on Swoole. Speed up your Laravel and Lumen applications.",
+            "keywords": [
+                "http",
+                "laravel",
+                "lumen",
+                "performance",
+                "server",
+                "swoole"
+            ],
+            "time": "2020-03-29T09:13:36+00:00"
         },
         {
             "name": "symfony/console",
