@@ -8,6 +8,7 @@
  */
 
 define('LARAVEL_START', microtime(true));
+header("access-control-allow-origin: https://sandbox.pagseguro.uol.com.br");
 
 /*
 |--------------------------------------------------------------------------
