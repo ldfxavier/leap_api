@@ -257,9 +257,9 @@ class PagseguroController extends Controller
         $Notificacao = new Notificacao;
         $Notificacao->codigo = $dados->notificationCode;
 
-        $Notificacao->save();
+        return response($Notificacao->save());
 
-        dd($dados);
+        // dd($dados);
         // $url = $this->_link . '/v3/transactions/notifications/' . $notificacao . '/?email=' . $this->_email . '&token=' . $this->_token;
         // $xml = $this->curl($url, [], [], 'GET');
         // $xml = simplexml_load_string($xml);
