@@ -106,7 +106,7 @@ class User extends Authenticatable implements JWTSubject
                 }
 
                 $user = auth('api')->user();
-                $user->avatar = asset('storage/' . $user->avatar);
+                $user->avatar = null !== $user->avatar ? asset('storage/' . $user->avatar) : null;
 
                 return response([
                     'access_token' => $token,
@@ -177,6 +177,7 @@ class User extends Authenticatable implements JWTSubject
                 return response([
                     'error' => false,
                     'message' => 'Avatar atualizado com sucesso!',
+                    'url' => asset('storage/' . $update['avatar'])
                 ]);
             endif;
         } catch (Exception $e) {
@@ -195,7 +196,7 @@ class User extends Authenticatable implements JWTSubject
             $user = $this->find($id);
 
             if ($user) :
-                $user->avatar = asset('storage/' . $user->avatar);
+                $user->avatar = null !== $user->avatar ? asset('storage/' . $user->avatar) : null;
                 return response($user);
             endif;
         } catch (Exception $e) {
@@ -217,7 +218,7 @@ class User extends Authenticatable implements JWTSubject
             $user = auth('api')->user();
 
             if ($user) :
-                $user->avatar = asset('storage/' . $user->avatar);
+                $user->avatar = null !== $user->avatar ? asset('storage/' . $user->avatar) : null;
                 return response($user);
             endif;
         } catch (Exception $e) {

@@ -15,10 +15,10 @@ class PagseguroController extends Controller
         '1' => 'Aguardando autorização do pagamento',
         '2' => 'Pagamento em análise',
         '3' => 'Pagamento aprovado',
-        '4' => 'Pagamento aprovado', // Disponível
-        '5' => 'Outros', // Em disputa
-        '6' => 'Pagamento devolvida', // Devolvida
-        '7' => 'Pagamento cancelado', // Cancelada
+        '4' => 'Pagamento aprovado',
+        '5' => 'Outros',
+        '6' => 'Pagamento devolvida',
+        '7' => 'Pagamento cancelado',
         '100' => 'Promocional'
     ];
 
@@ -243,9 +243,8 @@ class PagseguroController extends Controller
         $url = $this->_link . '/v3/transactions/notifications/' . $notificacao . '/?email=' . $this->_email . '&token=' . $this->_token;
         $xml = $this->curl($url, [], [], 'GET');
         $xml = simplexml_load_string($xml);
-        dd($xml);
 
-        if ($xml->resultsInThisPage <= 0) :
+        if (isset($xml->error)) :
             return response(["erro" => true, "titulo" => "Não encontrado", "texto" => "Nenhum resultado com a notificação digitada."], 400);
         endif;
 
@@ -311,7 +310,7 @@ class PagseguroController extends Controller
         // Dados do parcelamento
         $array['installmentQuantity'] = (int)$dados->installmentQuantity;
 
-        $array['noInterestInstallmentQuantity'] = (int)$dados->installmentQuantity;
+        $array['noInterestInstallmentQuantity'] = 12;
         $array['installmentValue'] = number_format($dados->installmentValue, 2, '.', '');
 
         // Dados do cartão
