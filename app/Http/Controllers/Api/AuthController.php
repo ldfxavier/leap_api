@@ -74,11 +74,15 @@ class AuthController extends Controller
      */
     protected function respondWithToken($token)
     {
+
+        $user = auth('api')->user();
+        $user->avatar = null !== $user->avatar ? asset('storage/' . $user->avatar) : null;
+
         return response([
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth('api')->factory()->getTTL() * 60,
-            'dados' => auth('api')->user()
+            'dados' => $user
         ]);
     }
 }
