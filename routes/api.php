@@ -20,11 +20,10 @@ use Illuminate\Support\Facades\Route;
 Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
 
     Route::get('/pagamento/sessao', 'PagseguroController@sessao')->name('pagseguro.sessao');
-    Route::post('/pagamento/checkout', 'PagseguroController@checkout')->name('pagseguro.checkout');
-    Route::get('/pagamento/transacao/{transacao}', 'PagseguroController@transacao')->name('pagseguro.transacao');
-    Route::get('/pagamento/referencia/{referencia}', 'PagseguroController@referencia')->name('pagseguro.referencia');
     Route::post('/pagamento/notificacao', 'PagseguroController@notificacao')->name('pagseguro.notificacao');
     Route::get('/pagamento/notificacao/{notificacao}', 'PagseguroController@getNotificacao')->name('pagseguro.getNotificacao');
+
+    Route::get('/email', 'Email@enviar')->name('email.enviar');
 
     Route::post('/auth/login', 'AuthController@login')->name('login');
     Route::post('/usuario', 'UserController@store')->name('user.store');
@@ -45,5 +44,9 @@ Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
         Route::get('/cursos/{cursos}', 'CursosController@show')->name('cursos.show');
         Route::get('/categorias/cursos/{tipo}', 'CategoriasController@cursos')->name('categorias.cursos');
         Route::get('/cursos/busca/{titulo}', 'CursosController@busca')->name('cursos.busca');
+
+        Route::post('/pagamento/checkout', 'PagseguroController@checkout')->name('pagseguro.checkout');
+        Route::get('/pagamento/transacao/{transacao}', 'PagseguroController@transacao')->name('pagseguro.transacao');
+        Route::get('/pagamento/referencia/{referencia}', 'PagseguroController@referencia')->name('pagseguro.referencia');
     });
 });

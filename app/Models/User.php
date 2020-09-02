@@ -16,6 +16,8 @@ class User extends Authenticatable implements JWTSubject
 
     protected $table = "usuario";
 
+    public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -73,11 +75,41 @@ class User extends Authenticatable implements JWTSubject
     public function store($data)
     {
         try {
+            if (empty($data->cpf)) :
+                return response([
+                    'error' => true,
+                    'message' => 'O campo "CPF" não pode ser vazio!',
+                ], 400);
+            else :
+                $data->cpf = preg_replace("/[^0-9]/", "", $data->cpf);
+            endif;
+
+            if (empty($data->telefone)) :
+                return response([
+                    'error' => true,
+                    'message' => 'O campo "Telefone" não pode ser vazio!',
+                ], 400);
+            else :
+                $data->telefone = preg_replace("/[^0-9]/", "", $data->telefone);
+            endif;
+
+            if (empty($data->nascimento)) :
+                return response([
+                    'error' => true,
+                    'message' => 'O campo "Data de nascimento" não pode ser vazio!',
+                ], 400);
+            else :
+                $data->nascimento = date('Y-m-d', strtotime($data->nascimento));
+            endif;
+
             $this->uuid = Str::uuid();
             $this->nome = $data->nome;
             $this->email = $data->email;
+            $this->cpf = $data->cpf;
+            $this->data_nascimento = $data->nascimento;
             $this->telefone = $data->telefone;
-            $this->status = 1;
+            $this->status = 2;
+            $this->data_criacao = date("Y-m-d H:i:s");
             $this->timestamps = false;
 
             if (null !== $data->file('avatar')) :
@@ -87,7 +119,7 @@ class User extends Authenticatable implements JWTSubject
             if (empty($data->password)) :
                 return response([
                     'error' => true,
-                    'message' => 'O campo "password" não pode ser vazio!',
+                    'message' => 'O campo "Senha" não pode ser vazio!',
                 ], 400);
             endif;
             $this->password = Hash::make($data->password);
@@ -219,6 +251,8 @@ class User extends Authenticatable implements JWTSubject
 
             if ($user) :
                 $user->avatar = null !== $user->avatar ? asset('storage/' . $user->avatar) : null;
+                $user->data_nascimento =  date('d/m/Y', strtotime($user->data_nascimento));
+                $user->cpf = str_pad($user->cpf, 11, '0', STR_PAD_LEFT);
                 return response($user);
             endif;
         } catch (Exception $e) {

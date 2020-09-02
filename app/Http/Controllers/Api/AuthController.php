@@ -77,6 +77,8 @@ class AuthController extends Controller
 
         $user = auth('api')->user();
         $user->avatar = null !== $user->avatar ? asset('storage/' . $user->avatar) : null;
+        $user->data_nascimento =  date('d/m/Y', strtotime($user->data_nascimento));
+        $user->cpf = str_pad($user->cpf, 11, '0', STR_PAD_LEFT);
 
         return response([
             'access_token' => $token,

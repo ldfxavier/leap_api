@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Notificacao;
+use App\Models\Transacoes;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PagseguroController extends Controller
 {
@@ -273,6 +276,8 @@ class PagseguroController extends Controller
 
     public function checkout(Request $dados)
     {
+        $user = auth('api')->user();
+
         // Formatação de dados
         $dados->senderPhone = preg_replace("/[^0-9]/", "", $dados->senderPhone);
         $dados->creditCardHolderPhone = preg_replace("/[^0-9]/", "", $dados->creditCardHolderPhone);
@@ -300,7 +305,7 @@ class PagseguroController extends Controller
         endforeach;
 
         // Dados do comprador
-        $array['reference'] = $dados->reference;
+        $array['reference'] = $user->uuid;
         $array['senderName'] = $dados->senderName;
         $array['senderCPF'] = $dados->senderCPF;
         $array['senderAreaCode'] = $dados->senderAreaCode;
@@ -349,9 +354,28 @@ class PagseguroController extends Controller
                 'texto' => !empty($erro_texto) ? $erro_texto : 'Ocorreu um erro no pagamento.<!-- ' . (string)$xml->error->message . '-->'
             ], 400);
         else :
+
+            $Transacoes = new Transacoes();
+            $Transacoes->uuid = Str::uuid();
+            $Transacoes->usuario = 1;
+            $Transacoes->referencia = $user->uuid;
+            $Transacoes->transacao = $xml->code;
+            $Transacoes->plano = $dados->plano;
+            $Transacoes->data_criacao = date("Y-m-d H:i:s");
+            $Transacoes->status = 1;
+            $Transacoes->save();
+
+            $date = date("Y-m-d");
+            $update = [
+                'data_plano' => $date,
+                'data_vencimento' => date('Y-m-d', strtotime($date . ' + 30 days'))
+            ];
+            $User = new User();
+            $User->where('id', $user->id)->update($update);
+
             return response([
                 'erro' => false,
-                'dados' => $xml
+                'message' => 'Pagamento efetuado com sucesso!'
             ]);
         endif;
     }
