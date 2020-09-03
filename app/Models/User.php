@@ -99,13 +99,13 @@ class User extends Authenticatable implements JWTSubject
                     'message' => 'O campo "Data de nascimento" não pode ser vazio!',
                 ], 400);
             else :
-                $data->nascimento = date('Y-m-d', strtotime($data->nascimento));
+                $data->nascimento = date('Y-d-m', strtotime($data->nascimento));
             endif;
 
             $this->uuid = Str::uuid();
             $this->nome = $data->nome;
             $this->email = $data->email;
-            $this->cpf = $data->cpf;
+            $this->cpf = str_pad($data->cpf, 11, '0', STR_PAD_LEFT);
             $this->data_nascimento = $data->nascimento;
             $this->telefone = $data->telefone;
             $this->status = 2;
@@ -168,9 +168,20 @@ class User extends Authenticatable implements JWTSubject
             $telefone = str_replace("-", "", $telefone);
             $telefone = str_replace(" ", "", $telefone);
 
+            $cep = trim($data->cep);
+            $cep = str_replace("-", "", $cep);
+            $cep = str_replace(".", "", $cep);
+
             $update = [
                 'nome' => $data->nome,
                 'telefone' => $telefone,
+                'logradouro' => $data->logradouro,
+                'numero' => $data->numero,
+                'bairro' => $data->bairro,
+                'complemento' => $data->complemento,
+                'cidade' => $data->cidade,
+                'estado' => $data->estado,
+                'cep' => $cep,
             ];
 
             $id = auth('api')->user()->id;

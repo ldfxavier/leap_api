@@ -211,8 +211,9 @@ class PagseguroController extends Controller
         endif;
         return response([
             'error' => true,
-            'message' => 'Tente novamente mais tarde!'
-        ]);
+            'message' => 'Tente novamente mais tarde!',
+            'error_message' => $sessao
+        ], 400);
     }
 
     public function transacao($transacao)
@@ -283,7 +284,9 @@ class PagseguroController extends Controller
         $dados->creditCardHolderPhone = preg_replace("/[^0-9]/", "", $dados->creditCardHolderPhone);
         $dados->billingAddressPostalCode = preg_replace("/[^0-9]/", "", $dados->billingAddressPostalCode);
         $dados->senderCPF = preg_replace("/[^0-9]/", "", $dados->senderCPF);
+        $dados->senderCPF = str_pad($dados->senderCPF, 11, '0', STR_PAD_LEFT);
         $dados->creditCardHolderCPF = preg_replace("/[^0-9]/", "", $dados->creditCardHolderCPF);
+        $dados->creditCardHolderCPF = str_pad($dados->creditCardHolderCPF, 11, '0', STR_PAD_LEFT);
 
         // Dados da API
         $array['token'] = $this->_token;
@@ -368,7 +371,8 @@ class PagseguroController extends Controller
             $date = date("Y-m-d");
             $update = [
                 'data_plano' => $date,
-                'data_vencimento' => date('Y-m-d', strtotime($date . ' + 30 days'))
+                'data_vencimento' => date('Y-m-d', strtotime($date . ' + 30 days')),
+                'status' => 1
             ];
             $User = new User();
             $User->where('id', $user->id)->update($update);
