@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Notificacao;
 use App\Models\Transacoes;
 use App\Models\User;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -38,6 +37,8 @@ class PagseguroController extends Controller
         $this->_ambiente = "sandbox";
         $this->_link = "https://ws.sandbox.pagseguro.uol.com.br";
         $this->_token = "BD3206F42F9047B6937CC8E968FB3C2E";
+        // $this->_link = "https://ws.sandbox.pagseguro.uol.com.br";
+        // $this->_token = "0c22b7ad-7c41-4396-806a-0dbb7f08e87bc0375ea34a7889aa856c25a07cfc2eed15ee-e833-4f9d-a3f6-cccc7e468d30";
         $this->_email = "swami3d@gmail.com";
     }
 
@@ -260,19 +261,26 @@ class PagseguroController extends Controller
         $Notificacao = new Notificacao;
         $Notificacao->codigo = $dados->notificationCode;
 
-        return response($Notificacao->save());
+        // return response($Notificacao->save());
 
-        // dd($dados);
-        // $url = $this->_link . '/v3/transactions/notifications/' . $notificacao . '/?email=' . $this->_email . '&token=' . $this->_token;
-        // $xml = $this->curl($url, [], [], 'GET');
-        // $xml = simplexml_load_string($xml);
-        // dd($xml);
+        $url = $this->_link . '/v3/transactions/notifications/' . $dados->notificationCode . '/?email=' . $this->_email . '&token=' . $this->_token;
+        $xml = $this->curl($url, [], [], 'GET');
+        $xml = simplexml_load_string($xml);
 
-        // if ($xml->resultsInThisPage <= 0) :
-        //     return response(["erro" => true, "titulo" => "Não encontrado", "texto" => "Nenhum resultado com a notificação digitada."], 400);
-        // endif;
+        $User = new User();
+        $user = $User->where('uuid', $xml->reference)->first();
 
-        // return response()->json($xml);
+        if ($user) :
+            $array = [
+                'titulo' => 'Status da compra',
+                'texto' => $this->status((int)$xml->status),
+                'nome' => $user->nome,
+                'email' => $user->email
+            ];
+
+            $Email = new Email();
+            return $Email->enviar($array);
+        endif;
     }
 
     public function checkout(Request $dados)

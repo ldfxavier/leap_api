@@ -45,7 +45,8 @@
             "database/factories"
         ],
         "files": [
-            "app/Helpers/MessageError.php"
+            "app/Helpers/MessageError.php",
+            "app/Helpers/Validate.php"
         ]
     },
     "autoload-dev": {

@@ -9,6 +9,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Exception;
+use PagSeguro\Helpers\Validate;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -82,6 +83,14 @@ class User extends Authenticatable implements JWTSubject
                 ], 400);
             else :
                 $data->cpf = preg_replace("/[^0-9]/", "", $data->cpf);
+            endif;
+
+            $validateCpf = validateCpf($data->cpf);
+            if (!$validateCpf) :
+                return response([
+                    'error' => true,
+                    'message' => 'O "CPF" informado não é válido!',
+                ], 400);
             endif;
 
             if (empty($data->telefone)) :

@@ -349,27 +349,27 @@
                                                                             <tbody>
                                                                                 <tr style="border-collapse:collapse">
                                                                                     <td align="center" style="padding:0;Margin:0;padding-top:15px;padding-bottom:15px">
-                                                                                        <h1 style="Margin:0;line-height:24px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:20px;font-style:normal;font-weight:normal;color:#333333"><strong>PAGAMENTO EM ANÁLISE </strong></h1>
+                                                                                        <h1 style="Margin:0;line-height:24px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:20px;font-style:normal;font-weight:normal;color:#333333"><strong>{{ $dados->titulo }} </strong></h1>
                                                                                     </td>
                                                                                 </tr>
-                                                                                <tr style="border-collapse:collapse">
+                                                                                <!-- <tr style="border-collapse:collapse">
                                                                                     <td align="left" style="padding:0;Margin:0;padding-left:40px;padding-right:40px">
-                                                                                        <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:24px;color:#666666;text-align:center">Olá,&nbsp;{{ $user->nome }}</p>
+                                                                                        <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:24px;color:#666666;text-align:center">Olá,&nbsp;{{ $dados->nome }}</p>
                                                                                     </td>
-                                                                                </tr>
+                                                                                </tr> -->
                                                                                 <tr style="border-collapse:collapse">
                                                                                     <td align="left" style="padding:0;Margin:0;padding-right:35px;padding-left:40px">
-                                                                                        <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:24px;color:#666666;text-align:center">Seu pagamento está em análise</p>
+                                                                                        <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:24px;color:#666666;text-align:center">{{ $dados->texto }}</p>
                                                                                     </td>
                                                                                 </tr>
-                                                                                <tr style="border-collapse:collapse">
+                                                                                <!-- <tr style="border-collapse:collapse">
                                                                                     <td align="center" style="padding:0;Margin:0;padding-top:25px;padding-left:40px;padding-right:40px">
                                                                                         <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:24px;color:#666666">Para acompanhar sua compra click no botão abaixo</p>
                                                                                     </td>
-                                                                                </tr>
-                                                                                <tr style="border-collapse:collapse">
+                                                                                </tr> -->
+                                                                                <!-- <tr style="border-collapse:collapse">
                                                                                     <td align="center" style="Margin:0;padding-left:10px;padding-right:10px;padding-top:40px;padding-bottom:40px"><span class="es-button-border" style="border-style:solid;border-color:#57C6F2;background:#FFFFFF;border-width:2px;display:inline-block;border-radius:10px;width:auto"><a href="https://leap.art.br" class="es-button" target="_blank" style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:14px;color:#57C6F2;border-style:solid;border-color:#FFFFFF;border-width:15px 20px 15px 20px;display:inline-block;background:#FFFFFF;border-radius:10px;font-weight:bold;font-style:normal;line-height:17px;width:auto;text-align:center">ACOMPANHAR COMPRA</a></span></td>
-                                                                                </tr>
+                                                                                </tr> -->
                                                                             </tbody>
                                                                         </table>
                                                                     </td>
@@ -410,11 +410,15 @@
                                                                                         <table class="es-table-not-adapt es-social" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                                                                                             <tbody>
                                                                                                 <tr style="border-collapse:collapse">
-                                                                                                    <td valign="top" align="center" style="padding:0;Margin:0;padding-right:10px"><img src="https://tlr.stripocdn.email/content/assets/img/social-icons/rounded-gray/facebook-rounded-gray.png" alt="Fb" title="Facebook" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td>
-                                                                                                    <td valign="top" align="center" style="padding:0;Margin:0;padding-right:10px"><img src="https://tlr.stripocdn.email/content/assets/img/social-icons/rounded-gray/twitter-rounded-gray.png" alt="Tw" title="Twitter" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td>
-                                                                                                    <td valign="top" align="center" style="padding:0;Margin:0;padding-right:10px"><img src="https://tlr.stripocdn.email/content/assets/img/social-icons/rounded-gray/instagram-rounded-gray.png" alt="Ig" title="Instagram" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td>
-                                                                                                    <td valign="top" align="center" style="padding:0;Margin:0;padding-right:10px"><img src="https://tlr.stripocdn.email/content/assets/img/social-icons/rounded-gray/youtube-rounded-gray.png" alt="Yt" title="Youtube" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td>
-                                                                                                    <td valign="top" align="center" style="padding:0;Margin:0;padding-right:10px"><img src="https://tlr.stripocdn.email/content/assets/img/social-icons/rounded-gray/linkedin-rounded-gray.png" alt="In" title="Linkedin" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td>
+                                                                                                    <td valign="top" align="center" style="padding:0;Margin:0;padding-right:10px">
+                                                                                                        <a href="https://www.facebook.com/LeapSchoolarte" target="_blank"><img src="https://tlr.stripocdn.email/content/assets/img/social-icons/rounded-gray/facebook-rounded-gray.png" alt="Fb" title="Facebook" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic">
+                                                                                                        </a></td>
+                                                                                                    <td valign="top" align="center" style="padding:0;Margin:0;padding-right:10px">
+                                                                                                        <a href="https://www.instagram.com/leap.school/" target="_blank"><img src="https://tlr.stripocdn.email/content/assets/img/social-icons/rounded-gray/instagram-rounded-gray.png" alt="Ig" title="Instagram" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic">
+                                                                                                        </a></td>
+                                                                                                    <td valign="top" align="center" style="padding:0;Margin:0;padding-right:10px">
+                                                                                                        <a href="https://www.youtube.com/channel/UCB24JDry2AxQig37-fDK9FQ?view_as=subscriber" target="_blank"><img src="https://tlr.stripocdn.email/content/assets/img/social-icons/rounded-gray/youtube-rounded-gray.png" alt="Yt" title="Youtube" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic">
+                                                                                                        </a></td>
                                                                                                 </tr>
                                                                                             </tbody>
                                                                                         </table>

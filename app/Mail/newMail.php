@@ -11,16 +11,16 @@ class newMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $user;
+    private $dados;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct($dados)
     {
-        $this->user = $user;
+        $this->dados = $dados;
     }
 
     /**
@@ -30,10 +30,10 @@ class newMail extends Mailable
      */
     public function build()
     {
-        $this->subject('Pagamento efetuado!');
-        //$this->user->email,
-        $this->to('barbarapmattar@gmail.com', $this->user->nome);
+        $this->subject($this->dados->titulo);
 
-        return $this->view('mail.newEmail', ['user' => $this->user]);
+        $this->to($this->dados->email, $this->dados->nome);
+
+        return $this->view('mail.newEmail', ['dados' => $this->dados]);
     }
 }

@@ -10,13 +10,10 @@ use Illuminate\Support\Facades\Mail;
 
 class Email extends Controller
 {
-    public function enviar()
+    public function enviar(array $dados)
     {
-        $User = new User();
-        $user = $User->where('id', 1)->get();
+        // return new newMail((object)$dados);
 
-        // return new newMail($user[0]);
-
-        Mail::send(new newMail($user[0]));
+        Mail::send(new newMail((object)$dados));
     }
 }
