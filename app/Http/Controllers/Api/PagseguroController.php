@@ -270,6 +270,8 @@ class PagseguroController extends Controller
         $User = new User();
         $user = $User->where('uuid', $xml->reference)->first();
 
+        dd($user);
+
         if ($user) :
             $array = [
                 'titulo' => 'Status da compra',

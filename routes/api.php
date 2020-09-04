@@ -21,7 +21,7 @@ Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
 
     Route::get('/pagamento/sessao', 'PagseguroController@sessao')->name('pagseguro.sessao');
     Route::post('/pagamento/notificacao', 'PagseguroController@notificacao')->name('pagseguro.notificacao');
-    // Route::get('/pagamento/notificacao/{notificacao}', 'PagseguroController@getNotificacao')->name('pagseguro.getNotificacao');
+    Route::get('/pagamento/notificacao/{notificacao}', 'PagseguroController@getNotificacao')->name('pagseguro.getNotificacao');
 
     Route::post('/auth/login', 'AuthController@login')->name('login');
     Route::post('/usuario', 'UserController@store')->name('user.store');
