@@ -368,7 +368,7 @@
                                                                                     </td>
                                                                                 </tr> -->
                                                                                 <?php
-                                                                                if ($dados->button) :
+                                                                                if (isset($dados->button) && $dados->button) :
                                                                                 ?>
                                                                                     <tr style="border-collapse:collapse">
                                                                                         <td align="center" style="Margin:0;padding-left:10px;padding-right:10px;padding-top:40px;padding-bottom:40px"><span class="es-button-border" style="border-style:solid;border-color:#57C6F2;background:#FFFFFF;border-width:2px;display:inline-block;border-radius:10px;width:auto"><a href="https://leap.art.br/login" class="es-button" target="_blank" style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:14px;color:#57C6F2;border-style:solid;border-color:#FFFFFF;border-width:15px 20px 15px 20px;display:inline-block;background:#FFFFFF;border-radius:10px;font-weight:bold;font-style:normal;line-height:17px;width:auto;text-align:center">ÁREA DO ALUNO</a></span></td>

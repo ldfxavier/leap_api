@@ -416,6 +416,7 @@ class PagseguroController extends Controller
                 'titulo' => 'Status da compra',
                 'texto' => 'Aguardando autorização do pagamento',
                 'nome' => $user->nome,
+                'button' => false,
                 'email' => $user->email
             ];
 
