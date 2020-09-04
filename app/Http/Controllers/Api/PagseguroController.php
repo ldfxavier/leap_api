@@ -271,7 +271,6 @@ class PagseguroController extends Controller
         $user = $User->where('uuid', $xml->reference)->first();
 
         if ($user) :
-
             if ((int)$xml->status === 3) :
                 $date = date("Y-m-d");
 
@@ -293,14 +292,22 @@ class PagseguroController extends Controller
 
                 $User = new User();
                 $User->where('id', $user->id)->update($update);
-            endif;
 
-            $array = [
-                'titulo' => 'Status da compra',
-                'texto' => $this->status((int)$xml->status),
-                'nome' => $user->nome,
-                'email' => $user->email
-            ];
+                $array = [
+                    'titulo' => 'Pagamento aprovado!',
+                    'texto' => 'Você já pode acessar nossos cursos. Basta ir em nosso site, na área do aluno e entrar com seu usuário e senha!',
+                    'button' => true,
+                    'nome' => $user->nome,
+                    'email' => $user->email
+                ];
+            else :
+                $array = [
+                    'titulo' => 'Status da compra',
+                    'texto' => $this->status((int)$xml->status),
+                    'nome' => $user->nome,
+                    'email' => $user->email
+                ];
+            endif;
 
             $Email = new Email();
             return $Email->enviar($array);
