@@ -37,7 +37,7 @@ class PagseguroController extends Controller
         $this->_ambiente = "sandbox";
         $this->_link = "https://ws.sandbox.pagseguro.uol.com.br";
         $this->_token = "BD3206F42F9047B6937CC8E968FB3C2E";
-        // $this->_link = "https://ws.sandbox.pagseguro.uol.com.br";
+        // $this->_link = "https://ws.pagseguro.uol.com.br";
         // $this->_token = "0c22b7ad-7c41-4396-806a-0dbb7f08e87bc0375ea34a7889aa856c25a07cfc2eed15ee-e833-4f9d-a3f6-cccc7e468d30";
         $this->_email = "swami3d@gmail.com";
     }
