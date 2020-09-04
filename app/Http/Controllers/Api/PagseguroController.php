@@ -300,10 +300,12 @@ class PagseguroController extends Controller
                     'nome' => $user->nome,
                     'email' => $user->email
                 ];
+
             else :
                 $array = [
                     'titulo' => 'Status da compra',
                     'texto' => $this->status((int)$xml->status),
+                    'button' => false,
                     'nome' => $user->nome,
                     'email' => $user->email
                 ];
