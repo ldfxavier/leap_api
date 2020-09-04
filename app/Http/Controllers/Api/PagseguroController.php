@@ -35,10 +35,10 @@ class PagseguroController extends Controller
     public function __construct()
     {
         $this->_ambiente = "sandbox";
-        // $this->_link = "https://ws.sandbox.pagseguro.uol.com.br";
-        // $this->_token = "BD3206F42F9047B6937CC8E968FB3C2E";
-        $this->_link = "https://ws.pagseguro.uol.com.br";
-        $this->_token = "0c22b7ad-7c41-4396-806a-0dbb7f08e87bc0375ea34a7889aa856c25a07cfc2eed15ee-e833-4f9d-a3f6-cccc7e468d30";
+        $this->_link = "https://ws.sandbox.pagseguro.uol.com.br";
+        $this->_token = "BD3206F42F9047B6937CC8E968FB3C2E";
+        // $this->_link = "https://ws.pagseguro.uol.com.br";
+        // $this->_token = "0c22b7ad-7c41-4396-806a-0dbb7f08e87bc0375ea34a7889aa856c25a07cfc2eed15ee-e833-4f9d-a3f6-cccc7e468d30";
         $this->_email = "swami3d@gmail.com";
     }
 
@@ -271,6 +271,30 @@ class PagseguroController extends Controller
         $user = $User->where('uuid', $xml->reference)->first();
 
         if ($user) :
+
+            if ((int)$xml->status === 3) :
+                $date = date("Y-m-d");
+
+                $tempo = strtotime($date . ' + 30 days');
+
+                if ($user->plano == 1) {
+                    $tempo = strtotime($date . ' + 30 days');
+                } else if ($user->plano == 2) {
+                    $tempo = strtotime($date . ' + 180 days');
+                } else if ($user->plano == 3) {
+                    $tempo = strtotime($date . ' + 360 days');
+                };
+
+                $update = [
+                    'data_plano' => $date,
+                    'data_vencimento' => date('Y-m-d', $tempo),
+                    'status' => 1
+                ];
+
+                $User = new User();
+                $User->where('id', $user->id)->update($update);
+            endif;
+
             $array = [
                 'titulo' => 'Status da compra',
                 'texto' => $this->status((int)$xml->status),
@@ -376,18 +400,22 @@ class PagseguroController extends Controller
             $Transacoes->status = 1;
             $Transacoes->save();
 
-            $date = date("Y-m-d");
-            $update = [
-                'data_plano' => $date,
-                'data_vencimento' => date('Y-m-d', strtotime($date . ' + 30 days')),
-                'status' => 1
-            ];
             $User = new User();
-            $User->where('id', $user->id)->update($update);
+            $User->where('id', $user->id)->update(['plano' => $dados->plano]);
+
+            $array = [
+                'titulo' => 'Status da compra',
+                'texto' => 'Aguardando autorização do pagamento',
+                'nome' => $user->nome,
+                'email' => $user->email
+            ];
+
+            $Email = new Email();
+            $Email->enviar($array);
 
             return response([
                 'erro' => false,
-                'message' => 'Pagamento efetuado com sucesso!'
+                'message' => 'Pagamento enviado com sucesso!'
             ]);
         endif;
     }
