@@ -23,7 +23,7 @@ class apiProtectedRoute extends BaseMiddleware
 
             if ($user->status !== 1) {
                 return response([
-                    'error' => 'token',
+                    'error' => 'Sem autorizacao',
                     'message' => 'Token inválido!',
                 ], 401);
             }
