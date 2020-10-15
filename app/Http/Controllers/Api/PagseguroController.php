@@ -296,7 +296,10 @@ class PagseguroController extends Controller
                 $array = [
                     'titulo' => 'Pagamento aprovado!',
                     'texto' => 'Você já pode acessar nossos cursos. Basta ir em nosso site, na área do aluno e entrar com seu usuário e senha!',
-                    'button' => true,
+                    'button' => (object)[
+                        'texto' => 'ÁREA DO ALUNO',
+                        'url' => 'https://leap.art.br/login'
+                    ],
                     'nome' => $user->nome,
                     'email' => $user->email
                 ];

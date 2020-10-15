@@ -120,6 +120,6 @@ class Cursos extends Model
 
     public function aulas()
     {
-        return $this->hasMany(Aulas::class, "curso", "id");
+        return $this->hasMany(Aulas::class, "curso", "id")->orderBy('aula');
     }
 }
